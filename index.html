@@ -7,16 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>DISC Personality Quiz</h1>
+    <h1>性格分析测试</h1>
     <button id="devButton" onclick="authenticateAndFill()">Developer Test Fill</button>
     <div id="quiz">
         <!-- Questions will be dynamically added here -->
     </div>
-    <button onclick="calculateResults()">Submit Quiz</button>
+    <button onclick="calculateResults()">提交问卷</button>
     <div id="results">
-        <h2>Your Results</h2>
+        <h2>您的结果</h2>
         <p id="scores"></p>
         <p id="topTraits"></p>
+        <br>
+        <p>This website does not store any personal information from you. There is no database behind. Feel free to audit through
+            <a href="https://github.com/technatkly/disc">GitHub repository</a>. Stars on the repository are much appreciated!</p>
     </div>
 
     <script src="quiz.js"></script>

@@ -78,7 +78,7 @@ function createQuiz() {
     questions.forEach((question, qIndex) => {
         const questionDiv = document.createElement('div');
         questionDiv.className = 'question';
-        questionDiv.innerHTML = `<h3>Question ${qIndex + 1}: ${question.text}</h3>`;
+        questionDiv.innerHTML = `<h3>${qIndex + 1}. ${question.text}</h3>`;
 
         question.options.forEach((option, oIndex) => {
             const optionDiv = document.createElement('div');
@@ -87,10 +87,10 @@ function createQuiz() {
                         <span class="option-text">${option.text}</span>
                         <select id="q${qIndex}o${oIndex}">
                             <option value="">Select...</option>
-                            <option value="1">1 (Least like me)</option>
+                            <option value="1">1 (最不符合)</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                            <option value="4">4 (Most like me)</option>
+                            <option value="4">4 (最符合)</option>
                         </select>
                     `;
             questionDiv.appendChild(optionDiv);
@@ -100,8 +100,8 @@ function createQuiz() {
 }
 
 function authenticateAndFill() {
-    const password = prompt("Enter developer password:");
-    if (password === "technatkly") {
+    const password = prompt("Who's there?");
+    if (password === "highlayfun") {
         fillTestValues();
     } else {
         alert("Incorrect password");
@@ -144,7 +144,7 @@ function calculateResults() {
     });
 
     if (!isValid) {
-        alert("Please ensure all options are ranked 1-4, using each number once per question.");
+        alert("请确保所有选项都已排序1-4，每个问题中每个数字使用一次。");
         return;
     }
 
@@ -157,19 +157,19 @@ function displayResults(scores) {
     const topTraitsP = document.getElementById('topTraits');
 
     scoresP.innerHTML = `
-                D (Dominance): ${scores.D}<br>
-                I (Influence): ${scores.I}<br>
-                S (Steadiness): ${scores.S}<br>
-                C (Conscientiousness): ${scores.C}
+                Dominance / 支配型: ${scores.D} 分<br>
+                Influence / 影响型: ${scores.I} 分<br>
+                Steadiness / 稳定型: ${scores.S} 分<br>
+                Conscientiousness 谨慎型: ${scores.C} 分
             `;
 
     const sortedScores = Object.entries(scores)
         .sort(([, a], [, b]) => b - a)
         .slice(0, 2);
 
-    topTraitsP.innerHTML = `Your top two traits are:<br>
-                1. ${sortedScores[0][0]} (${sortedScores[0][1]} points)<br>
-                2. ${sortedScores[1][0]} (${sortedScores[1][1]} points)`;
+    topTraitsP.innerHTML = `您的前两个特质是：<br>
+                1. ${sortedScores[0][0]} (${sortedScores[0][1]} 分)<br>
+                2. ${sortedScores[1][0]} (${sortedScores[1][1]} 分)`;
 
     resultsDiv.style.display = 'block';
 }
