@@ -40,6 +40,10 @@ button {
     cursor: pointer;
 }
 
+#devButton {
+    background-color: #ff9800;
+}
+
 #results {
     display: none;
     background-color: white;

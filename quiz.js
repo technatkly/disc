@@ -99,6 +99,27 @@ function createQuiz() {
     });
 }
 
+function authenticateAndFill() {
+    const password = prompt("Enter developer password:");
+    if (password === "technatkly") {
+        fillTestValues();
+    } else {
+        alert("Incorrect password");
+    }
+}
+
+mySeq = [[2,1,3,4],[2,4,1,3],[1,3,2,4],[4,3,2,1],[2,3,4,1],[3,4,2,1],[1,3,2,4],[3,4,1,2]]
+
+function fillTestValues() {
+    questions.forEach((question, qIndex) => {
+        const sequence = mySeq[qIndex % mySeq.length];  // Select the sequence based on the question index
+        question.options.forEach((option, oIndex) => {
+            const select = document.getElementById(`q${qIndex}o${oIndex}`);
+            select.value = sequence[oIndex];  // Fill 1, 2, 3, 4 in sequence
+        });
+    });
+}
+
 function calculateResults() {
     const scores = {D: 0, I: 0, S: 0, C: 0};
     let isValid = true;
@@ -148,8 +169,7 @@ function displayResults(scores) {
 
     topTraitsP.innerHTML = `Your top two traits are:<br>
                 1. ${sortedScores[0][0]} (${sortedScores[0][1]} points)<br>
-                2. ${sortedScores[1][0]} (${sortedScores[1][1]} points)
-            `;
+                2. ${sortedScores[1][0]} (${sortedScores[1][1]} points)`;
 
     resultsDiv.style.display = 'block';
 }
